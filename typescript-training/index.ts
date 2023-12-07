@@ -1,9 +1,23 @@
-// By initialization implicit type reference
-let awesome: string = 'This is going to be cool';
+function sum(a: number, b: number) {
+  return a + b;
+}
 
-awesome.toLocaleLowerCase();
-let value: number = 1;
+let result = sum(1, 2);
 
-let isCool: boolean = true;
+console.log(result);
 
-document.getElementsByTagName('p')[0].innerText = awesome;
+function applyDiscount(
+  price: number,
+  giveToCharity?: boolean,
+  discountPercentage: number = 50
+): number {
+  let newPrice = price - (price * discountPercentage) / 100;
+  if (giveToCharity) {
+    newPrice--;
+  }
+  return newPrice;
+}
+
+let finalPrice = applyDiscount(300);
+
+console.log('final', finalPrice);
