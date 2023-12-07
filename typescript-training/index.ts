@@ -1,27 +1,28 @@
 class Vehicule {
   speed: number;
-  brand: string;
-
+  private brand: string;
+  static color: string = 'black';
   constructor(speed: number, brand: string) {
-    this.brand = brand;
     this.speed = speed;
+    this.brand = brand;
   }
 
-  getFormatedSpeed(): string {
-    return this.speed + ' km/h';
-  }
-
-  setBrand(newBrand: string) {
+  public setBrand(newBrand: string): void {
     this.brand =
       newBrand[0].toUpperCase() +
       newBrand.slice(1, newBrand.length).toLowerCase();
   }
+
+  public getBrand(): string {
+    return this.brand;
+  }
+}
+console.log(Vehicule.color);
+
+class VehiculeAPI {
+  static fetchAll() {
+    console.log('async request ...');
+  }
 }
 
-const honda = new Vehicule(200, 'Honda');
-const mustang = new Vehicule(250, 'Mustang');
-
-honda.brand = 'toYotA';
-honda.setBrand('toyota');
-
-console.log(honda.brand);
+VehiculeAPI.fetchAll();
