@@ -1,23 +1,24 @@
-function sum(a: number, b: number) {
-  return a + b;
+//objects
+
+function printCoords(coords: { lat: string; lng: string }) {
+  console.log('Lat', coords.lat);
+  console.log('Lng', coords.lng);
 }
 
-let result = sum(1, 2);
+function getDistanceBetween(
+  coords1: { lat: string; lng: string },
+  coords2: { lat: string; lng: string }
+) {
+  // return the distance betwen coords1 and coords2
+}
 
-console.log(result);
+const user = { firstName: 'Codiku', lastName: 'TheDev' };
 
-function applyDiscount(
-  price: number,
-  giveToCharity?: boolean,
-  discountPercentage: number = 50
-): number {
-  let newPrice = price - (price * discountPercentage) / 100;
-  if (giveToCharity) {
-    newPrice--;
+function displayUser(user: { firstName: string; lastName?: string }) {
+  console.log('First name', user.firstName.toLocaleLowerCase());
+  if (user.lastName) {
+    console.log('Last name', user.lastName.toLocaleLowerCase());
   }
-  return newPrice;
 }
 
-let finalPrice = applyDiscount(300);
-
-console.log('final', finalPrice);
+displayUser(user);

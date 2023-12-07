@@ -1,15 +1,16 @@
-function sum(a, b) {
-    return a + b;
+//objects
+function printCoords(coords) {
+    console.log('Lat', coords.lat);
+    console.log('Lng', coords.lng);
 }
-var result = sum(1, 2);
-console.log(result);
-function applyDiscount(price, giveToCharity, discountPercentage) {
-    if (discountPercentage === void 0) { discountPercentage = 50; }
-    var newPrice = price - (price * discountPercentage) / 100;
-    if (giveToCharity) {
-        newPrice--;
+function getDistanceBetween(coords1, coords2) {
+    // return the distance betwen coords1 and coords2
+}
+var user = { firstName: 'Codiku', lastName: 'TheDev' };
+function displayUser(user) {
+    console.log('First name', user.firstName.toLocaleLowerCase());
+    if (user.lastName) {
+        console.log('Last name', user.lastName.toLocaleLowerCase());
     }
-    return newPrice;
 }
-var finalPrice = applyDiscount(300);
-console.log('final', finalPrice);
+displayUser(user);
