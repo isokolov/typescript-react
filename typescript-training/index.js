@@ -1,21 +1,20 @@
-var _a, _b;
-var persons = [
-    {
-        name: 'Alice',
-        job: 'Font-end Dev',
-        age: 28,
-        isHappy: true,
-        friendList: [{ age: 30, job: 'Astronaut', name: 'Tobby' }],
-        sayHi: function (color) {
-            console.log('Hi i am Alice ! my favorite color is ', color);
-        },
-    },
-    { name: 'Bob', job: 'Back-end dev', age: 44 },
-    { name: 'Codiku', job: 'Full Stack dev', age: 30 },
-];
-(_b = (_a = persons[0]).sayHi) === null || _b === void 0 ? void 0 : _b.call(_a, 'red');
-var formatedList = persons.map(function (person) {
-    return "<li>Name : ".concat(person.name, " - Job : ").concat(person.job, " - Age : ").concat(person.age, "</li>");
-});
-var liListString = formatedList.join('');
-document.getElementById('app').innerHTML = "<ul> ".concat(liListString, " </ul>");
+var Vehicule = /** @class */ (function () {
+    function Vehicule(speed, brand) {
+        this.brand = brand;
+        this.speed = speed;
+    }
+    Vehicule.prototype.getFormatedSpeed = function () {
+        return this.speed + ' km/h';
+    };
+    Vehicule.prototype.setBrand = function (newBrand) {
+        this.brand =
+            newBrand[0].toUpperCase() +
+                newBrand.slice(1, newBrand.length).toLowerCase();
+    };
+    return Vehicule;
+}());
+var honda = new Vehicule(200, 'Honda');
+var mustang = new Vehicule(250, 'Mustang');
+honda.brand = 'toYotA';
+honda.setBrand('toyota');
+console.log(honda.brand);

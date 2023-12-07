@@ -1,33 +1,27 @@
-interface Person {
-  name: string;
-  job: string;
-  age: number;
-  isHappy?: boolean;
-  friendList?: Person[];
-  sayHi?: (color: string) => void;
+class Vehicule {
+  speed: number;
+  brand: string;
+
+  constructor(speed: number, brand: string) {
+    this.brand = brand;
+    this.speed = speed;
+  }
+
+  getFormatedSpeed(): string {
+    return this.speed + ' km/h';
+  }
+
+  setBrand(newBrand: string) {
+    this.brand =
+      newBrand[0].toUpperCase() +
+      newBrand.slice(1, newBrand.length).toLowerCase();
+  }
 }
 
-const persons: Person[] = [
-  {
-    name: 'Alice',
-    job: 'Font-end Dev',
-    age: 28,
-    isHappy: true,
-    friendList: [{ age: 30, job: 'Astronaut', name: 'Tobby' }],
-    sayHi: (color: string) => {
-      console.log('Hi i am Alice ! my favorite color is ', color);
-    },
-  },
-  { name: 'Bob', job: 'Back-end dev', age: 44 },
-  { name: 'Codiku', job: 'Full Stack dev', age: 30 },
-];
+const honda = new Vehicule(200, 'Honda');
+const mustang = new Vehicule(250, 'Mustang');
 
-persons[0].sayHi?.('red');
+honda.brand = 'toYotA';
+honda.setBrand('toyota');
 
-const formatedList: string[] = persons.map((person: Person): string => {
-  return `<li>Name : ${person.name} - Job : ${person.job} - Age : ${person.age}</li>`;
-});
-
-const liListString: string = formatedList.join('');
-
-document.getElementById('app')!.innerHTML = `<ul> ${liListString} </ul>`;
+console.log(honda.brand);
