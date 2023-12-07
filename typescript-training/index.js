@@ -1,16 +1,14 @@
-//objects
-function printCoords(coords) {
-    console.log('Lat', coords.lat);
-    console.log('Lng', coords.lng);
-}
-function getDistanceBetween(coords1, coords2) {
-    // return the distance betwen coords1 and coords2
-}
-var user = { firstName: 'Codiku', lastName: 'TheDev' };
-function displayUser(user) {
-    console.log('First name', user.firstName.toLocaleLowerCase());
-    if (user.lastName) {
-        console.log('Last name', user.lastName.toLocaleLowerCase());
-    }
-}
-displayUser(user);
+var persons = [
+    {
+        name: 'Alice',
+        job: 'Font-end Dev',
+        age: 28,
+    },
+    { name: 'Bob', job: 'Back-end dev', age: 44 },
+    { name: 'Codiku', job: 'Full Stack dev', age: 30 },
+];
+var formatedList = persons.map(function (person) {
+    return "<li>Name : ".concat(person.name, " - Job : ").concat(person.job, " - Age : ").concat(person.age, "</li>");
+});
+var liListString = formatedList.join('');
+document.getElementById('app').innerHTML = "<ul> ".concat(liListString, " </ul>");
