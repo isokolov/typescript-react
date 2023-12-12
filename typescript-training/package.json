@@ -2,10 +2,15 @@
   "name": "typescript-training",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bank.ts",
   "scripts": {
+    "start": "nodemon  ./bank-project/bank.ts --quiet",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.0.2",
+    "ts-node": "^10.9.1"
+  }
 }
