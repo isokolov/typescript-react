@@ -3,13 +3,16 @@ import { useEffect, useState } from 'react';
 import { QuizAPI } from './api/quiz-api';
 import bubbleImg from './assets/bubble.png';
 import logoImg from './assets/logo.png';
+import { PlayQuiz } from './features/PlayQuiz';
+import { SetQuestionCategory } from './features/SetQuestionCategory';
 import { SetQuestionQty } from './features/SetQuestionQty';
-import { SetQuizCategory } from './features/SetQuizCategory';
+import { SetQuizDifficulty } from './features/SetQuizDifficulty';
 import './global.css';
 import {
   FetchQuizParams,
   QuizCategory,
   QuizDifficulty,
+  QuizItem,
   QuizType,
 } from './types/quiz-type';
 
@@ -29,9 +32,9 @@ export function App() {
     difficulty: QuizDifficulty.Mixed,
     type: QuizType.Multiple,
   });
-  console.log('***', quizParams);
   const [categories, setCategories] = useState<QuizCategory[]>([]);
-
+  const [quiz, setQuiz] = useState<QuizItem[]>([]);
+  console.log('***', quizParams);
   useEffect(() => {
     (async () => {
       setCategories([
@@ -64,21 +67,41 @@ export function App() {
         );
       case Step.SetQuestionCategory:
         return (
-          <SetQuizCategory
+          <SetQuestionCategory
             categories={categories}
-            onClickNext={(category: string) => {
+            onNext={async (categoryId: string) => {
               setQuizParams({
                 ...quizParams,
-                category: category === '-1' ? '' : category,
+                category: categoryId == '-1' ? '' : categoryId,
               });
               setStep(Step.SetQuestionDifficulty);
             }}
           />
         );
       case Step.SetQuestionDifficulty:
-        return <></>;
+        return (
+          <SetQuizDifficulty
+            onClickNext={async (difficulty: QuizDifficulty) => {
+              const params = {
+                ...quizParams,
+                difficulty,
+              };
+              setQuizParams(params);
+              const quizResp = await QuizAPI.fetchQuiz(params);
+              if (quizResp.length > 0) {
+                setQuiz(quizResp);
+                setStep(Step.Play);
+              } else {
+                alert(
+                  `Couldn't find ${params.amount} questions for this category, restarting game`
+                );
+                setStep(Step.SetQuestionQty);
+              }
+            }}
+          />
+        );
       case Step.Play:
-        return <></>;
+        return <PlayQuiz quiz={quiz} />;
       case Step.Score:
         return <></>;
       default:
